@@ -8,33 +8,39 @@
 <style>
 html,body{
   margin:0;
-  height:100%;
+  min-height:100%;
   background:black;
   color:white;
   font-family:system-ui,Segoe UI,Roboto,Arial;
-  overflow:hidden;
+  overflow:auto; /* CLAVE PARA CELULAR */
   user-select:none;
 }
 
 .stage{
   position:relative;
-  height:100vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-start;
   text-align:center;
+  padding-top:20px;
 }
 
-h1{color:#ff6fae;font-size:36px;margin:0}
-h2{color:#ff9fcf;margin:10px 0 20px}
+h1{color:#ff6fae;font-size:32px;margin:0}
+h2{color:#ff9fcf;margin:10px 0 10px;font-size:20px}
+h3,h4,h5{
+  margin:5px 15px;
+  font-weight:normal;
+}
 
 .gallery{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
   gap:14px;
   padding:20px;
-  max-width:90vw;
+  width:100%;
+  max-width:500px;
 }
 
 /* CONTENEDOR DE FOTO */
@@ -81,7 +87,7 @@ h2{color:#ff9fcf;margin:10px 0 20px}
 
 /* TEXTO INSTRUCTIVO */
 .hint{
-  margin-top:15px;
+  margin:15px 10px 30px;
   font-size:14px;
   color:#ccc;
   opacity:.85;
@@ -120,7 +126,7 @@ h2{color:#ff9fcf;margin:10px 0 20px}
   pointer-events:auto;
 }
 .secret p{
-  font-size:20px;
+  font-size:18px;
   line-height:1.6;
   color:#ff9fcf;
   max-width:600px;
@@ -134,11 +140,10 @@ h2{color:#ff9fcf;margin:10px 0 20px}
   <h1>Sofuuuu 🤍</h1>
   <h2>FELIZZZZ CUMPLE SOFETEEEE</h2>
   <h3>Cada foto es un lindo recuerdo con sofu peri</h3>
-  <h4>Te amo sos mi persona favorita🤍</h4>
-  <h5>perdon por mis boludeces te amo como a nadie sos muy importante para mi, estoy cambiando y mejorando para vos</h5>
+  <h4>Te amo sos mi persona favorita 🤍</h4>
+  <h5>Perdón por mis boludeces, estoy cambiando y mejorando para vos</h5>
 
   <div class="gallery">
-    <!-- 18 FOTOS -->
     <div class="photo"><span>Tocá 🤍</span><img src="foto1.jpg"></div>
     <div class="photo"><span>Tocá 🤍</span><img src="foto2.jpg"></div>
     <div class="photo"><span>Tocá 🤍</span><img src="foto3.jpg"></div>
@@ -168,8 +173,8 @@ h2{color:#ff9fcf;margin:10px 0 20px}
 <div class="secret" id="secret">
   <p>
     Feliz cumple sofuuu.<br><br>
-    te amooo 🤍<br><br>
-    <strong>VALE POR FLORES, CHOCOLATES, Y IR AL CINE</strong>
+    Te amooo 🤍<br><br>
+    <strong>VALE POR FLORES, CHOCOLATES Y CINE</strong>
   </p>
 </div>
 
