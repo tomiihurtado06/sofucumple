@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sofu 🤍</title>
+
+<style>
+html,body{
+  margin:0;
+  height:100%;
+  background:black;
+  color:white;
+  font-family:system-ui,Segoe UI,Roboto,Arial;
+  overflow:hidden;
+  user-select:none;
+}
+
+.stage{
+  position:relative;
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+h1{color:#ff6fae;font-size:36px;margin:0}
+h2{color:#ff9fcf;margin:10px 0 20px}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(110px,1fr));
+  gap:14px;
+  padding:20px;
+  max-width:90vw;
+}
+
+/* CONTENEDOR DE FOTO */
+.photo{
+  width:100%;
+  height:130px;
+  border-radius:16px;
+  border:4px solid #ff6fae;
+  box-shadow:0 0 18px rgba(255,111,174,.7);
+  background:#111;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* TEXTO "TOCÁ" */
+.photo span{
+  font-size:12px;
+  color:#ff9fcf;
+  opacity:.85;
+}
+
+/* IMAGEN OCULTA */
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  transform:scale(1.2);
+  transition:.6s;
+}
+
+/* IMAGEN MOSTRADA */
+.photo.show img{
+  opacity:1;
+  transform:scale(1);
+}
+.photo.show span{
+  display:none;
+}
+
+/* TEXTO INSTRUCTIVO */
+.hint{
+  margin-top:15px;
+  font-size:14px;
+  color:#ccc;
+  opacity:.85;
+}
+
+/* LLUVIA */
+.drop{
+  position:absolute;
+  top:-10vh;
+  pointer-events:none;
+  animation:fall linear forwards;
+  z-index:10;
+}
+
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(720deg)}
+}
+
+/* MENSAJE SECRETO */
+.secret{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.96);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.4s;
+  z-index:99;
+}
+.secret.show{
+  opacity:1;
+  pointer-events:auto;
+}
+.secret p{
+  font-size:20px;
+  line-height:1.6;
+  color:#ff9fcf;
+  max-width:600px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="stage" id="stage">
+  <h1>Sofuuuu 🤍</h1>
+  <h2>FELIZZZZ CUMPLE SOFETEEEE</h2>
+  <h3>Cada foto es un lindo recuerdo con sofu peri</h3>
+  <h4>Te amo sos mi persona favorita🤍</h4>
+  <h5>perdon por mis boludeces te amo como a nadie sos muy importante para mi, estoy cambiando y mejorando para vos</h5>
+
+  <div class="gallery">
+    <!-- 18 FOTOS -->
+    <div class="photo"><span>Tocá 🤍</span><img src="foto1.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto2.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto3.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto4.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto5.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto6.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto7.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto8.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto9.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto10.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto11.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto12.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto13.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto14.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto15.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto16.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto17.jpg"></div>
+    <div class="photo"><span>Tocá 🤍</span><img src="foto18.jpg"></div>
+  </div>
+
+  <div class="hint">
+    Tocá cada foto para descubrirla 🤍<br>
+    Mantener presionado para ver el mensaje
+  </div>
+</div>
+
+<div class="secret" id="secret">
+  <p>
+    Feliz cumple sofuuu.<br><br>
+    te amooo 🤍<br><br>
+    <strong>VALE POR FLORES, CHOCOLATES, Y IR AL CINE</strong>
+  </p>
+</div>
+
+<script>
+/* REVELAR FOTOS */
+document.querySelectorAll(".photo").forEach(p=>{
+  p.addEventListener("click",()=>{
+    p.classList.add("show");
+  });
+});
+
+/* BLOQUEOS */
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("selectstart",e=>e.preventDefault());
+
+const stage=document.getElementById("stage");
+const secret=document.getElementById("secret");
+const flowers=["🌸","🌺","🌷","🌹","💐"];
+
+/* LLUVIA DE FLORES */
+setInterval(()=>{
+  const d=document.createElement("div");
+  d.className="drop";
+  d.textContent=flowers[Math.floor(Math.random()*flowers.length)];
+  d.style.left=Math.random()*100+"vw";
+  d.style.fontSize=(20+Math.random()*35)+"px";
+  d.style.animationDuration=(6+Math.random()*8)+"s";
+  stage.appendChild(d);
+  setTimeout(()=>d.remove(),15000);
+},160);
+
+/* MENSAJE SECRETO */
+let timer;
+function startSecret(e){
+  e.preventDefault();
+  timer=setTimeout(()=>secret.classList.add("show"),3000);
+}
+function stopSecret(){
+  clearTimeout(timer);
+}
+
+document.body.addEventListener("touchstart",startSecret,{passive:false});
+document.body.addEventListener("touchend",stopSecret);
+document.body.addEventListener("mousedown",startSecret);
+document.body.addEventListener("mouseup",stopSecret);
+
+secret.addEventListener("click",()=>secret.classList.remove("show"));
+</script>
+
+</body>
+</html>
